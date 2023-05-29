@@ -5,7 +5,7 @@ const PORT = 3000 //指定 port
 //創建 express 物件，綁定監聽  port , 設定開啟後在 console 中提示
 const server = express().listen(PORT, () => {
   console.log(`Listening on ${PORT}`);
-  var url = 'http://localhost';
+  var url = 'https://edit-mr.github.io/doorbell/';
   var start = (process.platform == 'darwin' ? 'open' : process.platform == 'win32' ? 'start' : 'xdg-open');
   require('child_process').exec(start + ' ' + url);
 })
