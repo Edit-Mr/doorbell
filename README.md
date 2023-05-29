@@ -2,7 +2,7 @@
 
 simple localhost chat room
 
-![](example.webp)
+<img width=300px src=example.webp>
 
 ## usage
 
