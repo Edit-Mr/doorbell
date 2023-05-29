@@ -2,6 +2,8 @@
 
 simple localhost chat room
 
+![](example.webp)
+
 ## usage
 
 ```
