@@ -2,11 +2,12 @@
 const express = require('express')
 const SocketServer = require('ws').Server
 const PORT = 3000 //指定 port
-
 //創建 express 物件，綁定監聽  port , 設定開啟後在 console 中提示
 const server = express().listen(PORT, () => {
-    console.log(`Listening on ${PORT}`)
-    open(`https://edit-mr.github.io`);
+  console.log(`Listening on ${PORT}`);
+  var url = 'http://localhost';
+  var start = (process.platform == 'darwin' ? 'open' : process.platform == 'win32' ? 'start' : 'xdg-open');
+  require('child_process').exec(start + ' ' + url);
 })
 //將 express 交給 SocketServer 開啟 WebSocket 的服務
 const wss = new SocketServer({ server })
@@ -16,7 +17,7 @@ wss.on('connection', ws => {
   // 當收到client消息時
   ws.on('message', data => {
     // 收回來是 Buffer 格式、需轉成字串
-    data = data.toString()  
+    data = data.toString()
     console.log(data) // 可在 terminal 看收到的訊息
 
     /// 發送消息給client 
@@ -25,7 +26,7 @@ wss.on('connection', ws => {
     /// 發送給所有client： 
     let clients = wss.clients  //取得所有連接中的 client
     clients.forEach(client => {
-        client.send(data)  // 發送至每個 client
+      client.send(data)  // 發送至每個 client
     })
   })
   // 當連線關閉
